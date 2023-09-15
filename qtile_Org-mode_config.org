@@ -8,21 +8,20 @@
 
   Questo documento descrive la mia configurazione personale di Qtile, un tiling window manager scritto in Python.
 
-  ** Contesto
-     Qtile è un window manager estremamente configurabile e flessibile, ideale per utenti che desiderano avere un controllo completo sul proprio ambiente desktop.
+** Contesto
+Qtile è un window manager estremamente configurabile e flessibile, ideale per utenti che desiderano avere un controllo completo sul proprio ambiente desktop.
 
-  ** Scopo della Configurazione
-     Questa configurazione è focalizzata sull'ottimizzazione dell'usabilità e dell'estetica. 
+** Scopo della Configurazione
+Questa configurazione è focalizzata sull'ottimizzazione dell'usabilità e dell'estetica.
 
-  ** Componenti Principali
-     Nel seguito del documento, tratterò le seguenti aree chiave:
-     - Importazione dei moduli
-     - Configurazione del layout
-     - Barra delle applicazioni
-     - Impostazioni generali
+** Componenti Principali
+Nel seguito del documento, tratterò le seguenti aree chiave:
+- Importazione dei moduli
+- Configurazione del layout
+- Barra delle applicazioni
+- Impostazioni generali
 
 :TOC:
-
 
 * Copyright
 
@@ -40,30 +39,31 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE
 
+
 * Importazione dei Moduli
   :PROPERTIES:
   :END:
 
   In questa sezione, importiamo tutti i moduli e le librerie necessarie per la configurazione di Qtile.
 
-  ** Moduli del Sistema Operativo
-     - `os`: Utilizzato per interagire con il sistema operativo.
-     - `subprocess`: Utilizzato per eseguire comandi di shell.
+** Moduli del Sistema Operativo
+- `os`: Utilizzato per interagire con il sistema operativo.
+- `subprocess`: Utilizzato per eseguire comandi di shell.
 
-  ** Moduli Qtile
-     - `layout, widget, hook`: Importati da `libqtile` per gestire layout e widget.
-     - `Match, Screen`: Importati da `libqtile.config` per gestire le regole dei layout e le configurazioni dello schermo.
+** Moduli Qtile
+- `layout, widget, hook`: Importati da `libqtile` per gestire layout e widget.
+- `Match, Screen`: Importati da `libqtile.config` per gestire le regole dei layout e le configurazioni dello schermo.
 
-  ** Moduli Personalizzati
-     - `keys, groups, mod, mouse`: Importati da `keybindings` per gestire le configurazioni dei tasti e del mouse.
+** Moduli Personalizzati
+- `keys, groups, mod, mouse`: Importati da `keybindings` per gestire le configurazioni dei tasti e del mouse.
 
-  #+BEGIN_SRC python :tangle config.py
-  import os
-  import subprocess
-  from libqtile import layout, widget, hook
-  from libqtile.config import Match, Screen
-  from keybindings import keys, groups, mod, mouse
-  #+END_SRC
+#+BEGIN_SRC python :tangle config.py
+import os
+import subprocess
+from libqtile import layout, widget, hook
+from libqtile.config import Match, Screen
+from keybindings import keys, groups, mod, mouse
+#+END_SRC
 
 * Configurazione del Layout
   :PROPERTIES:
@@ -71,18 +71,18 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
   In questa sezione, definisco i layout che userò in Qtile.
 
-  ** Layout Columns
-     Utilizzo `layout.Columns` come layout principale. Questo layout permette di avere diverse colonne sullo schermo.
+** Layout Columns
+Utilizzo `layout.Columns` come layout principale. Questo layout permette di avere diverse colonne sullo schermo.
 
-     - `border_focus=["#0000ff"]`: Imposta il colore del bordo della finestra attiva a blu.
-     - `border_width=2`: Imposta la larghezza del bordo a 2 pixel.
-     - `margin=3`: Imposta un margine di 3 pixel attorno alle finestre.
+- `border_focus=["#0000ff"]`: Imposta il colore del bordo della finestra attiva a blu.
+- `border_width=2`: Imposta la larghezza del bordo a 2 pixel.
+- `margin=3`: Imposta un margine di 3 pixel attorno alle finestre.
 
-  ** Layout Max
-     `layout.Max` è un layout a schermo intero senza bordi aggiuntivi o spaziature.
+** Layout Max
+`layout.Max` è un layout a schermo intero senza bordi aggiuntivi o spaziature.
 
-  ** Layout Commentati
-     Altri layout come `layout.Stack`, `layout.Bsp`, ecc., sono commentati e possono essere attivati per esperimenti futuri.
+** Layout Commentati
+Altri layout come `layout.Stack`, `layout.Bsp`, ecc., sono commentati e possono essere attivati per esperimenti futuri.
 
 #+BEGIN_SRC python :tangle config.py
 layouts = [
@@ -108,19 +108,19 @@ layouts = [
 
   Questa sezione configura la barra delle applicazioni e i widget in Qtile.
 
-  ** Configurazione Generale dei Widget
-     - `font="FiraCode Nerd Font"`: Utilizzato per impostare il tipo di carattere dei widget.
-     - `fontsize=13`: Imposta la dimensione del carattere a 13.
-     - `padding=3`: Imposta un padding di 3 pixel attorno ai widget.
+** Configurazione Generale dei Widget
+- `font="FiraCode Nerd Font"`: Utilizzato per impostare il tipo di carattere dei widget.
+- `fontsize=13`: Imposta la dimensione del carattere a 13.
+- `padding=3`: Imposta un padding di 3 pixel attorno ai widget.
 
-  ** Widget Specifici
-     *** Widget CurrentLayoutIcon
-         Mostra l'icona del layout corrente.
-     *** Widget TextBox
-         Utilizzato per aggiungere del testo personalizzato nella barra delle applicazioni.
+** Widget Specifici
+*** Widget CurrentLayoutIcon
+Mostra l'icona del layout corrente.
+*** Widget TextBox
+Utilizzato per aggiungere del testo personalizzato nella barra delle applicazioni.
 
-  ** Widget Commentati
-     Alcuni widget sono commentati nel codice e possono essere utilizzati per esperimenti futuri.
+** Widget Commentati
+Alcuni widget sono commentati nel codice e possono essere utilizzati per esperimenti futuri.
 
 #+BEGIN_SRC python :tangle config.py
 widget_defaults = dict(
@@ -174,91 +174,86 @@ screens = [
 ]
 #+END_SRC
 
+* Impostazioni Generali
+:PROPERTIES:
+:END:
 
-  * Impostazioni Generali
-  :PROPERTIES:
-  :END:
+Questa sezione contiene le impostazioni generali per la configurazione di Qtile.
+** Impostazioni del Gruppo Dinamico
+- `dgroups_key_binder = None`: Descrizione dettagliata.
+- `dgroups_app_rules = []`: Una lista vuota che può contenere regole per i gruppi dinamici.
 
-  Questa sezione contiene le impostazioni generali per la configurazione di Qtile.
-
-  ** Impostazioni del Gruppo Dinamico
-     - `dgroups_key_binder = None`: Descrizione dettagliata.
-     - `dgroups_app_rules = []`: Una lista vuota che può contenere regole per i gruppi dinamici.
-
-  ** Impostazioni del Focus
-     - `follow_mouse_focus = True`: Imposta il focus sulla finestra sotto il puntatore del mouse.
-     - `focus_on_window_activation = "smart"`: Imposta le regole per il focus durante l'attivazione delle finestre.
-
+** Impostazioni del Focus
+- `follow_mouse_focus = True`: Imposta il focus sulla finestra sotto il puntatore del mouse.
+- `focus_on_window_activation = "smart"`: Imposta le regole per il focus durante l'attivazione delle finestre.
   ...
 
-  #+BEGIN_SRC python :tangle config.py
-  dgroups_key_binder = None
-  dgroups_app_rules = []  # type: list
-  follow_mouse_focus = True
-  bring_front_click = False
-  cursor_warp = False
-  auto_fullscreen = True
-  focus_on_window_activation = "smart"
-  reconfigure_screens = True
-  auto_minimize = True
-  wl_input_rules = None
-  wmname = "LG3D"
-  #+END_SRC
+#+BEGIN_SRC python :tangle config.py
+dgroups_key_binder = None
+dgroups_app_rules = []  # type: list
+follow_mouse_focus = True
+bring_front_click = False
+cursor_warp = False
+auto_fullscreen = True
+focus_on_window_activation = "smart"
+reconfigure_screens = True
+auto_minimize = True
+wl_input_rules = None
+wmname = "LG3D"
+#+END_SRC
 
- * Layout Flottante e Regole
-  :PROPERTIES:
-  :END:
+* Layout Flottante e Regole
+:PROPERTIES:
+:END:
 
-  Questa sezione dettaglia la configurazione del layout flottante e le regole associate.
+Questa sezione dettaglia la configurazione del layout flottante e le regole associate.
+** Cos'è un Layout Flottante
+Un layout flottante permette di avere finestre che possono essere liberamente spostate e ridimensionate, simile a quanto accade in ambienti desktop tradizionali.
 
-  ** Cos'è un Layout Flottante
-     Un layout flottante permette di avere finestre che possono essere liberamente spostate e ridimensionate, simile a quanto accade in ambienti desktop tradizionali.
+** Regole di Floating
+*** Regole Predefinite
+Utilizzo le regole predefinite fornite da Qtile.
+*** Regole Personalizzate
+- `Match(wm_class="confirmreset")`: Utilizzata per far flottare la finestra di conferma in gitk.
 
-  ** Regole di Floating
-     *** Regole Predefinite
-         Utilizzo le regole predefinite fornite da Qtile.
-     *** Regole Personalizzate
-         - `Match(wm_class="confirmreset")`: Utilizzata per far flottare la finestra di conferma in gitk.
+** Utilizzo di `xprop`
+L'utility `xprop` può essere utilizzata per ottenere informazioni sulle finestre e definire regole specifiche.
 
-  ** Utilizzo di `xprop`
-     L'utility `xprop` può essere utilizzata per ottenere informazioni sulle finestre e definire regole specifiche.
+#+BEGIN_SRC python :tangle config.py
+floating_layout = layout.Floating(
+    float_rules=[
+        # Run the utility of `xprop` to see the wm class and name of an X client.
+        *layout.Floating.default_float_rules,
+        Match(wm_class="confirmreset"),  # gitk
+        Match(wm_class="makebranch"),  # gitk
+        Match(wm_class="maketag"),  # gitk
+        Match(wm_class="ssh-askpass"),  # ssh-askpass
+        Match(title="branchdialog"),  # gitk
+        Match(title="pinentry"),  # GPG key password entry
+    ]
+)
+#+END_SRC
 
-  #+BEGIN_SRC python :tangle config.py
-  floating_layout = layout.Floating(
-      float_rules=[
-          # Run the utility of `xprop` to see the wm class and name of an X client.
-          *layout.Floating.default_float_rules,
-          Match(wm_class="confirmreset"),  # gitk
-          Match(wm_class="makebranch"),  # gitk
-          Match(wm_class="maketag"),  # gitk
-          Match(wm_class="ssh-askpass"),  # ssh-askpass
-          Match(title="branchdialog"),  # gitk
-          Match(title="pinentry"),  # GPG key password entry
-      ]
-  )
-  #+END_SRC
+* Script di Avvio Automatico
+:PROPERTIES:
+:END:
+Questa sezione spiega come viene eseguito lo script di avvio automatico.
 
- * Script di Avvio Automatico
-  :PROPERTIES:
-  :END:
+** Scopo dello Script
+Lo script `autostart.sh` viene eseguito all'avvio di Qtile e lancia vari programmi e servizi.
 
-  Questa sezione spiega come viene eseguito lo script di avvio automatico.
+** Uso del Decoratore
+Il decoratore `@hook.subscribe.startup_once` assicura che lo script venga eseguito una sola volta all'avvio.
 
-  ** Scopo dello Script
-     Lo script `autostart.sh` viene eseguito all'avvio di Qtile e lancia vari programmi e servizi.
+** Percorso dello Script
+Lo script è posizionato in `~/.config/qtile/scripts/autostart.sh`.
 
-  ** Uso del Decoratore
-     Il decoratore `@hook.subscribe.startup_once` assicura che lo script venga eseguito una sola volta all'avvio.
+** Esecuzione dello Script
+Utilizzo `subprocess.Popen` per eseguire lo script in modo asincrono.
 
-  ** Percorso dello Script
-     Lo script è posizionato in `~/.config/qtile/scripts/autostart.sh`.
-
-  ** Esecuzione dello Script
-     Utilizzo `subprocess.Popen` per eseguire lo script in modo asincrono.
-
-  #+BEGIN_SRC python :tangle config.py
-  @hook.subscribe.startup_once
-  def autostart():
-      home = os.path.expanduser('~/.config/qtile/scripts/autostart.sh')
-      subprocess.Popen([home])
-  #+END_SRC
+#+BEGIN_SRC python :tangle config.py
+@hook.subscribe.startup_once
+def autostart():
+    home = os.path.expanduser('~/.config/qtile/scripts/autostart.sh')
+    subprocess.Popen([home])
+#+END_SRC
