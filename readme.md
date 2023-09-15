@@ -1,0 +1,343 @@
+---
+author: Guido discaciati
+title: configurazione qtile
+---
+
+# Introduzione
+
+Questo documento descrive la mia configurazione personale di Qtile, un
+tiling window manager scritto in Python.
+
+## Contesto
+
+Qtile è un window manager estremamente configurabile e flessibile,
+ideale per utenti che desiderano avere un controllo completo sul proprio
+ambiente desktop.
+
+## Scopo della Configurazione
+
+Questa configurazione è focalizzata sull\'ottimizzazione dell\'usabilità
+e dell\'estetica.
+
+## Componenti Principali
+
+Nel seguito del documento, tratterò le seguenti aree chiave:
+
+-   Importazione dei moduli
+-   Configurazione del layout
+-   Barra delle applicazioni
+-   Impostazioni generali
+
+::: {.TOC .drawer}
+:::
+
+In questa sezione, importiamo tutti i moduli e le librerie necessarie
+per la configurazione di Qtile.
+
+## Moduli del Sistema Operativo
+
+-   \`os\`: Utilizzato per interagire con il sistema operativo.
+-   \`subprocess\`: Utilizzato per eseguire comandi di shell.
+
+## Moduli Qtile
+
+-   \`layout, widget, hook\`: Importati da \`libqtile\` per gestire
+    layout e widget.
+-   \`Match, Screen\`: Importati da \`libqtile.config\` per gestire le
+    regole dei layout e le configurazioni dello schermo.
+
+## Moduli Personalizzati
+
+-   \`keys, groups, mod, mouse\`: Importati da \`keybindings\` per
+    gestire le configurazioni dei tasti e del mouse.
+
+``` {.python tangle="config.py"}
+import os
+import subprocess
+from libqtile import layout, widget, hook
+from libqtile.config import Match, Screen
+from keybindings import keys, groups, mod, mouse
+```
+
+# Configurazione del Layout
+
+In questa sezione, definisco i layout che userò in Qtile.
+
+## Layout Columns
+
+Utilizzo \`layout.Columns\` come layout principale. Questo layout
+permette di avere diverse colonne sullo schermo.
+
+-   \`border~focus~=\[\"#0000ff\"\]\`: Imposta il colore del bordo della
+    finestra attiva a blu.
+-   \`border~width~=2\`: Imposta la larghezza del bordo a 2 pixel.
+-   \`margin=3\`: Imposta un margine di 3 pixel attorno alle finestre.
+
+## Layout Max
+
+\`layout.Max\` è un layout a schermo intero senza bordi aggiuntivi o
+spaziature.
+
+## Layout Commentati
+
+Altri layout come \`layout.Stack\`, \`layout.Bsp\`, ecc., sono
+commentati e possono essere attivati per esperimenti futuri.
+
+``` {.python tangle="config.py"}
+layouts = [
+    layout.Columns(border_focus=["#0000ff"], border_width=2, margin=3),
+    layout.Max(),
+    # Try more layouts by unleashing below layouts.
+    # layout.Stack(num_stacks=2),
+    # layout.Bsp(),
+    # layout.Matrix(),
+    # layout.MonadTall(),
+    # layout.MonadWide(),
+    # layout.RatioTile(),
+    # layout.Tile(),
+    # layout.TreeTab(),
+    # layout.VerticalTile(),
+    # layout.Zoomy(),
+]
+```
+
+# Barra delle Applicazioni
+
+Questa sezione configura la barra delle applicazioni e i widget in
+Qtile.
+
+## Configurazione Generale dei Widget
+
+-   \`font=\"FiraCode Nerd Font\"\`: Utilizzato per impostare il tipo di
+    carattere dei widget.
+-   \`fontsize=13\`: Imposta la dimensione del carattere a 13.
+-   \`padding=3\`: Imposta un padding di 3 pixel attorno ai widget.
+
+## Widget Specifici
+
+### Widget CurrentLayoutIcon
+
+Mostra l\'icona del layout corrente.
+
+### Widget TextBox
+
+Utilizzato per aggiungere del testo personalizzato nella barra delle
+applicazioni.
+
+## Widget Commentati
+
+Alcuni widget sono commentati nel codice e possono essere utilizzati per
+esperimenti futuri.
+
+``` {.python tangle="config.py"}
+widget_defaults = dict(
+    font="FiraCode Nerd Font",
+    fontsize=13,
+    padding=3,
+)
+extension_defaults = widget_defaults.copy()
+
+screens = [
+    Screen(
+#        top=bar.Bar(
+#            [
+#                widget.CurrentLayoutIcon(),
+#                widget.TextBox("|", fontsize=18),
+#                widget.GroupBox(),
+#                widget.TextBox("|", fontsize=18),
+#                widget.Prompt(),
+#                widget.WindowName(),
+#                widget.Chord(
+#                    chords_colors={
+#                        "launch": ("#ff0000", "#ffffff"),
+#                    },
+#                    name_transform=lambda name: name.upper(),
+#                ),
+#                widget.Cmus(),
+#                widget.TextBox("|", fontsize=18),
+#                widget.Memory(),
+#                widget.MemoryGraph(),
+#                widget.SwapGraph(),
+#                # widget.ThermalSensor(),
+#                # widget.ThermalZone(),
+#                widget.CPU(),
+#                widget.CPUGraph(),
+#                # widget.PulseVolume(),
+#                # widget.TextBox("󱑢", fontsize=18),
+#                # widget.CheckUpdates(distro="Arch_paru", no_update_string="no update"),
+#                # widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
+#                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
+#                # widget.StatusNotifier(),
+#                widget.TextBox("|", fontsize=18),
+#                widget.Systray(),
+#                widget.TextBox("| ", fontsize=18),
+#                widget.Clock(format="%a %d/%m/%Y %I:%M %p"),
+#            ],
+#            24,
+#            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
+#            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+#        ),
+    ),
+]
+```
+
+# Impostazioni Generali
+
+Questa sezione contiene le impostazioni generali per la configurazione
+di Qtile. Le variabili qui definite influenzano il comportamento globale
+del window manager.
+
+## Dettagli delle Opzioni Configurate
+
+### dgroups~keybinder~ = None:
+
+Descrizione Generale: Gestisce le scorciatoie da tastiera per i gruppi
+dinamici. None: Disabilita le scorciatoie da tastiera predefinite.
+Funzione personalizzata: Permette di definire scorciatoie da tastiera
+personalizzate.
+
+### dgroups~apprules~ = \[\]:
+
+Descrizione Generale: Definisce le regole per l\'apertura delle nuove
+finestre in specifici gruppi. \[\]: Nessuna regola è definita. Lista di
+tuple: Permette di definire regole specifiche.
+
+### follow~mousefocus~ = True:
+
+Descrizione Generale: Controlla se il focus deve seguire il puntatore
+del mouse. True: Il focus seguirà il mouse. False: Il focus non seguirà
+il mouse.
+
+### bring~frontclick~ = False:
+
+Descrizione Generale: Determina se una finestra deve essere portata in
+primo piano quando viene cliccata. True: Porta la finestra in primo
+piano. False: Non porta la finestra in primo piano.
+
+### cursor~warp~ = False:
+
+Descrizione Generale: Controlla se il cursore deve essere spostato alla
+nuova finestra attivata. True: Sposta il cursore. False: Non sposta il
+cursore.
+
+### auto~fullscreen~ = True:
+
+Descrizione Generale: Gestisce il passaggio automatico al modo a schermo
+intero per le finestre che lo richiedono. True: Abilita il passaggio
+automatico. False: Disabilita il passaggio automatico.
+
+### focus~onwindowactivation~ = \"smart\":
+
+Descrizione Generale: Gestisce il comportamento del focus quando una
+nuova finestra viene attivata. \"smart\": Decisioni intelligenti basate
+sul contesto. \"urgent\": Solo finestre \"urgenti\". \"focus\": Finestra
+attivata. \"none\": Nessun focus automatico.
+
+### reconfigure~screens~ = True:
+
+Descrizione Generale: Controlla se Qtile deve riconfigurare gli schermi
+quando cambiano le impostazioni. True: Riconfigura gli schermi. False:
+Non riconfigura gli schermi.
+
+### auto~minimize~ = True:
+
+Descrizione Generale: Gestisce la minimizzazione automatica delle
+finestre quando perdono il focus. True: Minimizza automaticamente.
+False: Non minimizza automaticamente.
+
+### wl~inputrules~ = None:
+
+Descrizione Generale: Definisce le regole per l\'input in un ambiente
+Wayland. None: Nessuna regola specifica. Lista di regole: Regole
+specifiche.
+
+### wmname = \"LG3D\":
+
+Descrizione Generale: Imposta il nome del window manager, utilizzato
+principalmente per la compatibilità con alcune applicazioni Java.
+\"LG3D\": Nome del window manager.
+
+``` {.python tangle="config.py"}
+dgroups_key_binder = None
+dgroups_app_rules = []  # type: list
+follow_mouse_focus = True
+bring_front_click = False
+cursor_warp = False
+auto_fullscreen = True
+focus_on_window_activation = "smart"
+reconfigure_screens = True
+auto_minimize = True
+wl_input_rules = None
+wmname = "LG3D"
+```
+
+# Layout Flottante e Regole
+
+Questa sezione dettaglia la configurazione del layout flottante e le
+regole associate.
+
+## Cos\'è un Layout Flottante
+
+Un layout flottante permette di avere finestre che possono essere
+liberamente spostate e ridimensionate, simile a quanto accade in
+ambienti desktop tradizionali.
+
+## Regole di Floating
+
+### Regole Predefinite
+
+Utilizzo le regole predefinite fornite da Qtile.
+
+### Regole Personalizzate
+
+-   \`Match(wm~class~=\"confirmreset\")\`: Utilizzata per far flottare
+    la finestra di conferma in gitk.
+
+## Utilizzo di \`xprop\`
+
+L\'utility \`xprop\` può essere utilizzata per ottenere informazioni
+sulle finestre e definire regole specifiche.
+
+``` {.python tangle="config.py"}
+floating_layout = layout.Floating(
+    float_rules=[
+        # Run the utility of `xprop` to see the wm class and name of an X client.
+        *layout.Floating.default_float_rules,
+        Match(wm_class="confirmreset"),  # gitk
+        Match(wm_class="makebranch"),  # gitk
+        Match(wm_class="maketag"),  # gitk
+        Match(wm_class="ssh-askpass"),  # ssh-askpass
+        Match(title="branchdialog"),  # gitk
+        Match(title="pinentry"),  # GPG key password entry
+    ]
+)
+```
+
+# Script di Avvio Automatico
+
+Questa sezione spiega come viene eseguito lo script di avvio automatico.
+
+## Scopo dello Script
+
+Lo script \`autostart.sh\` viene eseguito all\'avvio di Qtile e lancia
+vari programmi e servizi.
+
+## Uso del Decoratore
+
+Il decoratore \`@hook.subscribe.startup~once~\` assicura che lo script
+venga eseguito una sola volta all\'avvio.
+
+## Percorso dello Script
+
+Lo script è posizionato in \`\~/.config/qtile/scripts/autostart.sh\`.
+
+## Esecuzione dello Script
+
+Utilizzo \`subprocess.Popen\` per eseguire lo script in modo asincrono.
+
+``` {.python tangle="config.py"}
+@hook.subscribe.startup_once
+def autostart():
+    home = os.path.expanduser('~/.config/qtile/scripts/autostart.sh')
+    subprocess.Popen([home])
+```
