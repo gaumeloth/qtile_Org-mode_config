@@ -189,63 +189,63 @@ del window manager.
 
 ## Dettagli delle Opzioni Configurate
 
-### dgroups~keybinder~ = None:
+### dgroups_key_binder = None:
 
 Descrizione Generale: Gestisce le scorciatoie da tastiera per i gruppi
 dinamici. None: Disabilita le scorciatoie da tastiera predefinite.
 Funzione personalizzata: Permette di definire scorciatoie da tastiera
 personalizzate.
 
-### dgroups~apprules~ = \[\]:
+### dgroups_app_rules = \[\]:
 
 Descrizione Generale: Definisce le regole per l\'apertura delle nuove
 finestre in specifici gruppi. \[\]: Nessuna regola è definita. Lista di
 tuple: Permette di definire regole specifiche.
 
-### follow~mousefocus~ = True:
+### follow_mouse_focus = True:
 
 Descrizione Generale: Controlla se il focus deve seguire il puntatore
 del mouse. True: Il focus seguirà il mouse. False: Il focus non seguirà
 il mouse.
 
-### bring~frontclick~ = False:
+### bring_front_click = False:
 
 Descrizione Generale: Determina se una finestra deve essere portata in
 primo piano quando viene cliccata. True: Porta la finestra in primo
 piano. False: Non porta la finestra in primo piano.
 
-### cursor~warp~ = False:
+### cursor_warp = False:
 
 Descrizione Generale: Controlla se il cursore deve essere spostato alla
 nuova finestra attivata. True: Sposta il cursore. False: Non sposta il
 cursore.
 
-### auto~fullscreen~ = True:
+### auto_fullscreen = True:
 
 Descrizione Generale: Gestisce il passaggio automatico al modo a schermo
 intero per le finestre che lo richiedono. True: Abilita il passaggio
 automatico. False: Disabilita il passaggio automatico.
 
-### focus~onwindowactivation~ = \"smart\":
+### focus_on_window_activation = \"smart\":
 
 Descrizione Generale: Gestisce il comportamento del focus quando una
 nuova finestra viene attivata. \"smart\": Decisioni intelligenti basate
 sul contesto. \"urgent\": Solo finestre \"urgenti\". \"focus\": Finestra
 attivata. \"none\": Nessun focus automatico.
 
-### reconfigure~screens~ = True:
+### reconfigure_screens = True:
 
 Descrizione Generale: Controlla se Qtile deve riconfigurare gli schermi
 quando cambiano le impostazioni. True: Riconfigura gli schermi. False:
 Non riconfigura gli schermi.
 
-### auto~minimize~ = True:
+### auto_minimize = True:
 
 Descrizione Generale: Gestisce la minimizzazione automatica delle
 finestre quando perdono il focus. True: Minimizza automaticamente.
 False: Non minimizza automaticamente.
 
-### wl~inputrules~ = None:
+### wl_input_rules = None:
 
 Descrizione Generale: Definisce le regole per l\'input in un ambiente
 Wayland. None: Nessuna regola specifica. Lista di regole: Regole
