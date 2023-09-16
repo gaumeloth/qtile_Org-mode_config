@@ -271,14 +271,14 @@ wl_input_rules = None
 wmname = "LG3D"
 ```
 
-# Layout Flottante e Regole
+# Floating layout e Regole
 
-Questa sezione dettaglia la configurazione del layout flottante e le
+Questa sezione dettaglia la configurazione del floating layout e le
 regole associate.
 
-## Cos\'è un Layout Flottante
+## Cos\'è un floating Layout 
 
-Un layout flottante permette di avere finestre che possono essere
+Un floating layout permette di avere finestre che possono essere
 liberamente spostate e ridimensionate, simile a quanto accade in
 ambienti desktop tradizionali.
 
